@@ -233,9 +233,19 @@
     </style>
   </head>
   <body>
-
+  
+    <!-- 
+      Title: ServiceNow UI Components
+      Description: This HTML document showcases a range of styled UI components commonly used in ServiceNow-like applications.
+      Each component has been designed with a consistent theme and can be reused across form-based enterprise systems.
+    -->
+    
     <center> <h1> ServiceNow UI Components</h1> </center>
-    <!-- Buttons -->
+
+    <!-- 
+      Component: Buttons
+      Purpose: Provides different types of buttons (primary, secondary, danger) for actions such as form submission, navigation, or confirmation dialogs.
+    -->
     <div class="sn-component">
       <h2>Buttons</h2>
       <button class="sn-button primary">Primary</button>
@@ -243,7 +253,11 @@
       <button class="sn-button danger">Danger</button>
     </div>
 
-    <!-- Inputs -->
+    <!-- 
+      Component: Inputs
+      Purpose: Displays various input fields for text, date, time, and textarea to capture user data.
+      Variants include small, normal, and large-sized input fields.
+    -->
     <div class="sn-component">
       <h2>Inputs</h2>
       <input type="text" class="sn-input input-sm" placeholder="Small input">
@@ -255,7 +269,11 @@
       <input type="datetime-local" class="sn-input">
     </div>
 
-    <!-- Select Dropdowns -->
+    <!-- 
+      Component: Select Dropdowns
+      Purpose: Allows users to choose from a list of predefined options.
+      Includes single-level and grouped select menus.
+    -->
     <div class="sn-component">
       <h2>Select Dropdowns</h2>
       <select class="sn-select">
@@ -275,7 +293,11 @@
       </select>
     </div>
 
-    <!-- Simple Form -->
+    <!-- 
+      Component: Simple Form
+      Purpose: Basic form layout for capturing user data such as name, email, and a message.
+      Includes a primary button to submit the form.
+    -->
     <div class="sn-component">
       <h2>Simple Form</h2>
       <form class="sn-form">
@@ -290,7 +312,10 @@
       </form>
     </div>
 
-    <!-- Messages -->
+    <!-- 
+      Component: Messages
+      Purpose: Displays contextual feedback messages — info, success, or error — to inform users about system events.
+    -->
     <div class="sn-component">
       <h2>Messages</h2>
       <div class="sn-message info">This is an info message.</div>
@@ -298,7 +323,11 @@
       <div class="sn-message error">This is an error message.</div>
     </div>
 
-    <!-- Simple List View -->
+    <!-- 
+      Component: Simple List View (Table)
+      Purpose: Presents tabular data (e.g., incidents or cases) with columns like number, description, priority, contact, and account.
+      Useful for record viewing and inline navigation.
+    -->
     <div class="sn-component">
       <h2>Simple List View</h2>
       <table class="sn-table">
@@ -358,7 +387,11 @@
       </table>
     </div>
 
-    <!-- Pills -->
+    <!-- 
+      Component: Pills
+      Purpose: Displays pill-shaped labels, typically used for tags or metadata.
+      Truncates long text for visual cleanliness.
+    -->
     <div class="sn-component">
       <h2>Pills</h2>
       <div class="sn-pill">Singularly long tag line that truncates nicely</div>
@@ -366,7 +399,11 @@
       <div class="sn-pill">Another long pill text line that gets cut off</div>
     </div>
 
-    <!-- Checklist -->
+    <!-- 
+      Component: Checklist
+      Purpose: Lists tasks with checkboxes to indicate completion. Useful in task tracking or forms.
+      Includes a subtask link with indentation.
+    -->
     <div class="sn-component">
       <h3>Checklist</h3>
       <label><input type="checkbox"> Confirm employee information is correct</label>
@@ -375,7 +412,10 @@
       <label><input type="checkbox"> Ensure the total amount is accurate</label>
     </div>
 
-    <!-- Radio Buttons -->
+    <!-- 
+      Component: Radio Buttons
+      Purpose: Allows selection of one option from a group — commonly used for priority, state, etc.
+    -->
     <div class="sn-component">
       <h3>Radio Buttons (Single Choice)</h3>
       <label><input type="radio" name="priority"> Low Priority</label>
@@ -383,7 +423,11 @@
       <label><input type="radio" name="priority"> High Priority</label>
     </div>
 
-    <!-- Toggle Switch -->
+   <!-- 
+      Component: Toggle Switch
+      Purpose: Allows users to enable or disable an option using a styled toggle switch.
+      Visually intuitive alternative to checkboxes for boolean settings.
+    -->
     <div class="sn-component">
       <h3>Toggle</h3>
       <label for="toggle">Enable/Disable Option</label>
@@ -393,7 +437,11 @@
       </label>
     </div>
 
-    <!-- Detailed Form --> 
+    <!-- 
+      Component: Detailed Form
+      Purpose: A structured, two-column form used for capturing detailed record information such as incident data.
+      Includes input fields, dropdowns, and action buttons (Submit/Reset).
+    -->
     <div class="sn-component">
       <h2>Detailed Form</h2>
       <form class="sn-form">
