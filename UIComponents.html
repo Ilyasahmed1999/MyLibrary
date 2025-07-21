@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ServiceNow UI Components</title>
+    <style>
+      :root {
+        --sn-primary: #1F8476;
+        --sn-primary-hover: #0e6155;
+        --sn-border: #d1d5da;
+        --sn-bg: #ffffff;
+        --sn-bg-alt: #f5f6f7;
+        --sn-message-info: #e0f3ff;
+        --sn-message-success: #d2f4e8;
+        --sn-message-error: #ffe0e0;
+        --sn-table-header: #f0f1f3;
+        --sn-pill-bg: #f0f3f5;
+        --sn-pill-border: #cbd1d6;
+        --sn-text: black;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--sn-bg-alt);
+        color: var(--sn-text);
+        margin: 0;
+        padding: 2rem;
+      }
+
+      h2, h3 {
+        margin-top: 0;
+        font-size: 1.25rem;
+      }
+
+      label {
+        font-weight: 500;
+        display: block;
+        margin: 0.5rem 0;
+      }
+
+      .sn-button {
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+        margin-right: 1rem;
+        transition: background-color 0.2s;
+      }
+
+      .sn-button.primary {
+        background-color: var(--sn-primary);
+        color: #fff;
+      }
+      .sn-button.primary:hover {
+        background-color: var(--sn-primary-hover);
+      }
+
+      .sn-button.secondary {
+        background-color: #e4e6eb;
+        color: var(--sn-text);
+      }
+      .sn-button.secondary:hover {
+        background-color: #d0d3d9;
+      }
+
+      .sn-button.danger {
+        background-color: #d9534f;
+        color: #fff;
+      }
+      .sn-button.danger:hover {
+        background-color: #c9302c;
+      }
+
+      .sn-input, .sn-select, textarea {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid var(--sn-border);
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .input-sm { font-size: 0.85rem; padding: 0.3rem; }
+      .input-lg { font-size: 1.2rem; padding: 0.7rem; }
+
+      .sn-message {
+        padding: 1rem;
+        border-radius: 4px;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+      }
+      .sn-message.info { background-color: var(--sn-message-info); color: #045c99; }
+      .sn-message.success { background-color: var(--sn-message-success); color: #067d68; }
+      .sn-message.error { background-color: var(--sn-message-error); color: #a80000; }
+
+      .sn-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+
+      .sn-table th, .sn-table td {
+        padding: 0.75rem;
+        border-bottom: 1px solid #e3e6e8;
+        text-align: left;
+      }
+
+      .sn-table th {
+        background-color: var(--sn-table-header);
+        font-weight: 600;
+      }
+
+      .sn-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .sn-link {
+        color: var(--sn-primary);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .sn-label {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .priority-1 { background: #f8d7da; color: #a71d2a; }
+      .priority-2 { background: #ffe5b4; color: #8a6d1a; }
+      .priority-3 { background: #d6eadf; color: #2c6e49; }
+      .priority-4 { background: #d2f4e8; color: #045c4e; }
+
+      .sn-pill {
+        display: inline-block;
+        max-width: 250px;
+        padding: 0.4rem 1rem;
+        background-color: white;
+        border: 1px solid var(--sn-pill-border);
+        border-radius: 999px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.9rem;
+      }
+      .sn-pill:hover {
+        background-color: var(--sn-primary);
+        color: white; 
+      }
+
+      .sn-toggle {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .toggle {
+        position: relative;
+        display: inline-block;
+        width: 52px;
+        height: 28px;
+      }
+
+      .toggle input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        border-radius: 34px;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        border-radius: 50%;
+        transition: 0.4s;
+      }
+
+      .toggle input:checked + .slider {
+        background-color: var(--sn-primary);
+      }
+
+      .toggle input:checked + .slider:before {
+        transform: translateX(24px);
+      }
+      .sn-component {
+        background: var(--sn-bg);
+        border: 1px solid var(--sn-border);
+        border-radius: 6px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      }
+
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;  /* Increased gap for more space between columns */
+        margin-bottom: 2rem;
+      }
+
+      .form-grid div {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <center> <h1> ServiceNow UI Components</h1> </center>
+    <!-- Buttons -->
+    <div class="sn-component">
+      <h2>Buttons</h2>
+      <button class="sn-button primary">Primary</button>
+      <button class="sn-button secondary">Secondary</button>
+      <button class="sn-button danger">Danger</button>
+    </div>
+
+    <!-- Inputs -->
+    <div class="sn-component">
+      <h2>Inputs</h2>
+      <input type="text" class="sn-input input-sm" placeholder="Small input">
+      <input type="text" class="sn-input" placeholder="Default input">
+      <input type="text" class="sn-input input-lg" placeholder="Large input">
+      <textarea class="sn-input" rows="4" placeholder="Textarea input"></textarea>
+      <input type="date" class="sn-input">
+      <input type="time" class="sn-input">
+      <input type="datetime-local" class="sn-input">
+    </div>
+
+    <!-- Select Dropdowns -->
+    <div class="sn-component">
+      <h2>Select Dropdowns</h2>
+      <select class="sn-select">
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+      <select class="sn-select">
+        <optgroup label="Group 1">
+          <option>Item A</option>
+          <option>Item B</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option>Item C</option>
+          <option>Item D</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <!-- Simple Form -->
+    <div class="sn-component">
+      <h2>Simple Form</h2>
+      <form class="sn-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="sn-input">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="sn-input">
+        <label for="msg">Message</label>
+        <textarea id="msg" class="sn-input" rows="4"></textarea>
+        <br><br>
+        <button class="sn-button primary">Submit</button>
+      </form>
+    </div>
+
+    <!-- Messages -->
+    <div class="sn-component">
+      <h2>Messages</h2>
+      <div class="sn-message info">This is an info message.</div>
+      <div class="sn-message success">This is a success message.</div>
+      <div class="sn-message error">This is an error message.</div>
+    </div>
+
+    <!-- Simple List View -->
+    <div class="sn-component">
+      <h2>Simple List View</h2>
+      <table class="sn-table">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Short description</th>
+            <th>Priority</th>
+            <th>Contact</th>
+            <th>Account</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#" class="sn-link">CS0000007</a></td>
+            <td>Server outage</td>
+            <td><span class="sn-label priority-4">4 - Low</span></td>
+            <td><a href="#" class="sn-link">Linda Cox</a></td>
+            <td><a href="#" class="sn-link">Avid Corporation</a></td>
+          </tr>
+          <tr>
+            <td><a href="#" class="sn-link">CS0000011</a></td>
+            <td>Change repeatedly</td>
+            <td><span class="sn-label priority-3">3 - Moderate</span></td>
+            <td><a href="#" class="sn-link">Charlie White</a></td>
+            <td><a href="#" class="sn-link">Avid Corporation</a></td>
+          </tr>
+          <tr>
+            <td><a href="#" class="sn-link">CS0000501</a></td>
+            <td>Problem with refrigerator</td>
+            <td><span class="sn-label priority-4">4 - Low</span></td>
+            <td>(empty)</td>
+            <td>(empty)</td>
+          </tr>
+          <tr>
+            <td><a href="#" class="sn-link">CS0000708</a></td>
+            <td>Router Backup</td>
+            <td><span class="sn-label priority-2">2 - High</span></td>
+            <td>(empty)</td>
+            <td>(empty)</td>
+          </tr>
+          <tr>
+            <td><a href="#" class="sn-link">CS0000723</a></td>
+            <td>Additional rack space for router</td>
+            <td><span class="sn-label priority-1">1 - Critical</span></td>
+            <td>(empty)</td>
+            <td>(empty)</td>
+          </tr>
+          <tr>
+            <td><a href="#" class="sn-link">CS0000703</a></td>
+            <td>Router Motor Cleanup</td>
+            <td><span class="sn-label priority-1">1 - Critical</span></td>
+            <td>(empty)</td>
+            <td>(empty)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pills -->
+    <div class="sn-component">
+      <h2>Pills</h2>
+      <div class="sn-pill">Singularly long tag line that truncates nicely</div>
+      <div class="sn-pill">Short tag</div>
+      <div class="sn-pill">Another long pill text line that gets cut off</div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="sn-component">
+      <h3>Checklist</h3>
+      <label><input type="checkbox"> Confirm employee information is correct</label>
+      <label><input type="checkbox"> Add beneficiaries to the record</label>
+      <label style="margin-left: 25px; color: #0072C6; font-size: 0.9em;">&#8627; <a href="#" style="color:#0072C6;">Beneficiary addition and modification</a></label>
+      <label><input type="checkbox"> Ensure the total amount is accurate</label>
+    </div>
+
+    <!-- Radio Buttons -->
+    <div class="sn-component">
+      <h3>Radio Buttons (Single Choice)</h3>
+      <label><input type="radio" name="priority"> Low Priority</label>
+      <label><input type="radio" name="priority"> Medium Priority</label>
+      <label><input type="radio" name="priority"> High Priority</label>
+    </div>
+
+    <!-- Toggle Switch -->
+    <div class="sn-component">
+      <h3>Toggle</h3>
+      <label for="toggle">Enable/Disable Option</label>
+      <label class="toggle">
+        <input type="checkbox" id="toggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Detailed Form --> 
+    <div class="sn-component">
+      <h2>Detailed Form</h2>
+      <form class="sn-form">
+        <div class="form-grid">
+          <!-- Left Column -->
+          <div>
+            <label for="number">Number</label>
+            <input type="text" id="number" class="sn-input" value="INC0009005" readonly>
+
+            <label for="caller">Caller</label>
+            <input type="text" id="caller" class="sn-input" value="David Miller">
+
+            <label for="category">Category</label>
+            <select id="category" class="sn-select">
+              <option>Software</option>
+              <option>Hardware</option>
+              <option>Network</option>
+            </select>
+
+            <label for="subcategory">Subcategory</label>
+            <select id="subcategory" class="sn-select">
+              <option>Email</option>
+              <option>Database</option>
+              <option>Web</option>
+            </select>
+
+            <label for="short-description">Short Description</label>
+            <input type="text" id="short-description" class="sn-input" value="Email server is down.">
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <label for="contact-type">Contact Type</label>
+            <select id="contact-type" class="sn-select">
+              <option>-- None --</option>
+              <option>Phone</option>
+              <option>Email</option>
+            </select>
+
+            <label for="state">State</label>
+            <select id="state" class="sn-select">
+              <option selected>New</option>
+              <option>In Progress</option>
+              <option>Resolved</option>
+            </select>
+
+            <label for="impact">Impact</label>
+            <select id="impact" class="sn-select">
+              <option selected>1 - High</option>
+              <option>2 - Medium</option>
+              <option>3 - Low</option>
+            </select>
+
+            <label for="urgency">Urgency</label>
+            <select id="urgency" class="sn-select">
+              <option selected>1 - High</option>
+              <option>2 - Medium</option>
+              <option>3 - Low</option>
+            </select>
+
+            <label for="priority">Priority</label>
+            <select id="priority" class="sn-select">
+              <option selected>1 - Critical</option>
+              <option>2 - High</option>
+              <option>3 - Medium</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="sn-button primary">Submit</button>
+          <button type="reset" class="sn-button secondary">Reset</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
