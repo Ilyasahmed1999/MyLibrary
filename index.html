@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,122 +7,141 @@
     <title>ServiceNow UI Components</title>
     <style>
       :root {
-        --sn-primary: #1F8476;
-        --sn-primary-hover: #0e6155;
-        --sn-border: #d1d5da;
-        --sn-bg: #ffffff;
-        --sn-bg-alt: #f5f6f7;
-        --sn-message-info: #e0f3ff;
-        --sn-message-success: #d2f4e8;
-        --sn-message-error: #ffe0e0;
-        --sn-table-header: #f0f1f3;
-        --sn-pill-bg: #f0f3f5;
-        --sn-pill-border: #cbd1d6;
-        --sn-text: black;
+        --sn-primary: #00FF9D;
+        --sn-bg: #032335;
+        --sn-bg-alt: #152D42;
+        --sn-accent: #1ED760;
+        --sn-text: #E6F1F8;
+        --sn-muted: #93A8B3;
+        --sn-card-bg: #032c41;
+        --sn-border: #2A4B6A;
       }
 
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--sn-bg-alt);
+        background: var(--sn-bg);
         color: var(--sn-text);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 2rem;
       }
 
-      h2, h3 {
-        margin-top: 0;
-        font-size: 1.25rem;
+      h1, h2, h3 {
+        color: var(--sn-text);
       }
-
       label {
         font-weight: 500;
         display: block;
         margin: 0.5rem 0;
       }
+      .sn-component {
+        background-color: var(--sn-card-bg);
+        border: 1px solid var(--sn-border);
+        border-radius: 10px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 255, 157, 0.1);
+      }
 
       .sn-button {
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
+        padding: 0.75rem 1.5rem;
         font-size: 1rem;
-        cursor: pointer;
+        border-radius: 12px;
         border: none;
-        margin-right: 1rem;
-        transition: background-color 0.2s;
+        cursor: pointer;
+        transition: background-color 0.2s, box-shadow 0.3s;
       }
 
       .sn-button.primary {
         background-color: var(--sn-primary);
-        color: #fff;
+        color: #000;
       }
+
       .sn-button.primary:hover {
-        background-color: var(--sn-primary-hover);
+        background-color: #00e68c;
+        box-shadow: 0 0 10px var(--sn-primary);
       }
 
       .sn-button.secondary {
-        background-color: #e4e6eb;
+        background-color: #274862;
         color: var(--sn-text);
       }
+
       .sn-button.secondary:hover {
-        background-color: #d0d3d9;
+        background-color: #365d80;
       }
 
       .sn-button.danger {
-        background-color: #d9534f;
-        color: #fff;
+        background-color: #FF4D4D;
+        color: white;
       }
+
       .sn-button.danger:hover {
-        background-color: #c9302c;
+        background-color: #e60000;
       }
 
       .sn-input, .sn-select, textarea {
         width: 100%;
-        padding: 0.5rem;
+        padding: 0.75rem;
+        border-radius: 10px;
         border: 1px solid var(--sn-border);
-        border-radius: 4px;
+        background-color: var(--sn-bg-alt);
+        color: var(--sn-text);
+        margin-bottom: 1rem;
+      }
+
+      .sn-message {
+        padding: 1rem;
+        border-radius: 10px;
         font-size: 1rem;
         margin-bottom: 1rem;
       }
 
-      .input-sm { font-size: 0.85rem; padding: 0.3rem; }
-      .input-lg { font-size: 1.2rem; padding: 0.7rem; }
-
-      .sn-message {
-        padding: 1rem;
-        border-radius: 4px;
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
+      .sn-message.info {
+        background-color: #1e3b55;
+        color: #70c4ff;
       }
-      .sn-message.info { background-color: var(--sn-message-info); color: #045c99; }
-      .sn-message.success { background-color: var(--sn-message-success); color: #067d68; }
-      .sn-message.error { background-color: var(--sn-message-error); color: #a80000; }
+
+      .sn-message.success {
+        background-color: #1c4038;
+        color: #00ff9d;
+      }
+
+      .sn-message.error {
+        background-color: #5a1c1c;
+        color: #ff8080;
+      }
 
       .sn-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 0.95rem;
+        background-color: var(--sn-bg-alt);
+        border-radius: 10px;
+        overflow: hidden;
       }
 
       .sn-table th, .sn-table td {
-        padding: 0.75rem;
-        border-bottom: 1px solid #e3e6e8;
+        padding: 1rem;
         text-align: left;
+        border-bottom: 1px solid var(--sn-border);
       }
 
       .sn-table th {
-        background-color: var(--sn-table-header);
-        font-weight: 600;
+        background-color: #1f3a56;
+        color: var(--sn-text);
       }
 
       .sn-table tr:nth-child(even) {
-        background-color: #f9f9f9;
+        background-color: #162e44;
       }
 
       .sn-link {
         color: var(--sn-primary);
         text-decoration: none;
-        font-weight: 500;
       }
 
+      .sn-link:hover {
+        text-decoration: underline;
+      }
       .sn-label {
         display: inline-block;
         padding: 0.25rem 0.5rem;
@@ -130,28 +150,24 @@
         font-weight: 500;
         white-space: nowrap;
       }
-
-      .priority-1 { background: #f8d7da; color: #a71d2a; }
-      .priority-2 { background: #ffe5b4; color: #8a6d1a; }
-      .priority-3 { background: #d6eadf; color: #2c6e49; }
-      .priority-4 { background: #d2f4e8; color: #045c4e; }
-
       .sn-pill {
         display: inline-block;
         max-width: 250px;
         padding: 0.4rem 1rem;
-        background-color: white;
-        border: 1px solid var(--sn-pill-border);
+        background-color: #213a53;
+        color: var(--sn-text);
         border-radius: 999px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         font-size: 0.9rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
+
       .sn-pill:hover {
         background-color: var(--sn-primary);
-        color: white; 
+        color: #000;
       }
+
 
       .sn-toggle {
         display: flex;
@@ -202,26 +218,11 @@
       .toggle input:checked + .slider:before {
         transform: translateX(24px);
       }
-      .sn-component {
-        background: var(--sn-bg);
-        border: 1px solid var(--sn-border);
-        border-radius: 6px;
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      }
-
 
       .form-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 2rem;  /* Increased gap for more space between columns */
-        margin-bottom: 2rem;
-      }
-
-      .form-grid div {
-        display: flex;
-        flex-direction: column;
+        gap: 2rem;
       }
 
       .form-actions {
@@ -229,23 +230,23 @@
         justify-content: flex-end;
         gap: 1rem;
       }
-
     </style>
+
   </head>
   <body>
-  
+
     <!-- 
-      Title: ServiceNow UI Components
-      Description: This HTML document showcases a range of styled UI components commonly used in ServiceNow-like applications.
-      Each component has been designed with a consistent theme and can be reused across form-based enterprise systems.
-    -->
-    
+Title: ServiceNow UI Components
+Description: This HTML document showcases a range of styled UI components commonly used in ServiceNow-like applications.
+Each component has been designed with a consistent theme and can be reused across form-based enterprise systems.
+-->
+
     <center> <h1> ServiceNow UI Components</h1> </center>
 
     <!-- 
-      Component: Buttons
-      Purpose: Provides different types of buttons (primary, secondary, danger) for actions such as form submission, navigation, or confirmation dialogs.
-    -->
+Component: Buttons
+Purpose: Provides different types of buttons (primary, secondary, danger) for actions such as form submission, navigation, or confirmation dialogs.
+-->
     <div class="sn-component">
       <h2>Buttons</h2>
       <button class="sn-button primary">Primary</button>
@@ -254,10 +255,10 @@
     </div>
 
     <!-- 
-      Component: Inputs
-      Purpose: Displays various input fields for text, date, time, and textarea to capture user data.
-      Variants include small, normal, and large-sized input fields.
-    -->
+Component: Inputs
+Purpose: Displays various input fields for text, date, time, and textarea to capture user data.
+Variants include small, normal, and large-sized input fields.
+-->
     <div class="sn-component">
       <h2>Inputs</h2>
       <input type="text" class="sn-input input-sm" placeholder="Small input">
@@ -270,10 +271,10 @@
     </div>
 
     <!-- 
-      Component: Select Dropdowns
-      Purpose: Allows users to choose from a list of predefined options.
-      Includes single-level and grouped select menus.
-    -->
+Component: Select Dropdowns
+Purpose: Allows users to choose from a list of predefined options.
+Includes single-level and grouped select menus.
+-->
     <div class="sn-component">
       <h2>Select Dropdowns</h2>
       <select class="sn-select">
@@ -294,10 +295,10 @@
     </div>
 
     <!-- 
-      Component: Simple Form
-      Purpose: Basic form layout for capturing user data such as name, email, and a message.
-      Includes a primary button to submit the form.
-    -->
+Component: Simple Form
+Purpose: Basic form layout for capturing user data such as name, email, and a message.
+Includes a primary button to submit the form.
+-->
     <div class="sn-component">
       <h2>Simple Form</h2>
       <form class="sn-form">
@@ -313,9 +314,9 @@
     </div>
 
     <!-- 
-      Component: Messages
-      Purpose: Displays contextual feedback messages — info, success, or error — to inform users about system events.
-    -->
+Component: Messages
+Purpose: Displays contextual feedback messages — info, success, or error — to inform users about system events.
+-->
     <div class="sn-component">
       <h2>Messages</h2>
       <div class="sn-message info">This is an info message.</div>
@@ -324,10 +325,10 @@
     </div>
 
     <!-- 
-      Component: Simple List View (Table)
-      Purpose: Presents tabular data (e.g., incidents or cases) with columns like number, description, priority, contact, and account.
-      Useful for record viewing and inline navigation.
-    -->
+Component: Simple List View (Table)
+Purpose: Presents tabular data (e.g., incidents or cases) with columns like number, description, priority, contact, and account.
+Useful for record viewing and inline navigation.
+-->
     <div class="sn-component">
       <h2>Simple List View</h2>
       <table class="sn-table">
@@ -388,10 +389,10 @@
     </div>
 
     <!-- 
-      Component: Pills
-      Purpose: Displays pill-shaped labels, typically used for tags or metadata.
-      Truncates long text for visual cleanliness.
-    -->
+Component: Pills
+Purpose: Displays pill-shaped labels, typically used for tags or metadata.
+Truncates long text for visual cleanliness.
+-->
     <div class="sn-component">
       <h2>Pills</h2>
       <div class="sn-pill">Singularly long tag line that truncates nicely</div>
@@ -400,10 +401,10 @@
     </div>
 
     <!-- 
-      Component: Checklist
-      Purpose: Lists tasks with checkboxes to indicate completion. Useful in task tracking or forms.
-      Includes a subtask link with indentation.
-    -->
+Component: Checklist
+Purpose: Lists tasks with checkboxes to indicate completion. Useful in task tracking or forms.
+Includes a subtask link with indentation.
+-->
     <div class="sn-component">
       <h3>Checklist</h3>
       <label><input type="checkbox"> Confirm employee information is correct</label>
@@ -413,9 +414,9 @@
     </div>
 
     <!-- 
-      Component: Radio Buttons
-      Purpose: Allows selection of one option from a group — commonly used for priority, state, etc.
-    -->
+Component: Radio Buttons
+Purpose: Allows selection of one option from a group — commonly used for priority, state, etc.
+-->
     <div class="sn-component">
       <h3>Radio Buttons (Single Choice)</h3>
       <label><input type="radio" name="priority"> Low Priority</label>
@@ -423,11 +424,11 @@
       <label><input type="radio" name="priority"> High Priority</label>
     </div>
 
-   <!-- 
-      Component: Toggle Switch
-      Purpose: Allows users to enable or disable an option using a styled toggle switch.
-      Visually intuitive alternative to checkboxes for boolean settings.
-    -->
+    <!-- 
+Component: Toggle Switch
+Purpose: Allows users to enable or disable an option using a styled toggle switch.
+Visually intuitive alternative to checkboxes for boolean settings.
+-->
     <div class="sn-component">
       <h3>Toggle</h3>
       <label for="toggle">Enable/Disable Option</label>
@@ -438,10 +439,10 @@
     </div>
 
     <!-- 
-      Component: Detailed Form
-      Purpose: A structured, two-column form used for capturing detailed record information such as incident data.
-      Includes input fields, dropdowns, and action buttons (Submit/Reset).
-    -->
+Component: Detailed Form
+Purpose: A structured, two-column form used for capturing detailed record information such as incident data.
+Includes input fields, dropdowns, and action buttons (Submit/Reset).
+-->
     <div class="sn-component">
       <h2>Detailed Form</h2>
       <form class="sn-form">
